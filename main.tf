@@ -1,14 +1,19 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.27"
-    }
-  }
+##################################################################################
+# VARIABLES
+##################################################################################
 
-  required_version = ">= 0.14.9"
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+variable "region" {
+  default = "eu-central-1"
 }
 
+##################################################################################
+# PROVIDERS
+##################################################################################
+
 provider "aws" {
-  region = "eu-central-1"
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+  region     = var.region
 }

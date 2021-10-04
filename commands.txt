@@ -1,0 +1,5 @@
+terraform init
+terraform validate
+terraform plan -out banashris.tfplan
+terraform apply "banashris.tfplan"
+terraform destroy
