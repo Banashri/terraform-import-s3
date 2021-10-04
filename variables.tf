@@ -8,12 +8,16 @@ variable "region" {
   default = "eu-central-1"
 }
 
+variable "bucket_name_prefix" {}
+
 ##################################################################################
-# PROVIDERS
+# LOCALS
 ##################################################################################
 
-provider "aws" {
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
-  region     = var.region
+locals {
+
+  env_name = lower(terraform.workspace)
+  
+  s3_bucket_name = "${var.bucket_name_prefix}-${local.env_name}-${random_integer.rand.result}"
+
 }
